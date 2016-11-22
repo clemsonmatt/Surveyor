@@ -1,0 +1,308 @@
+<% content_for :header_title do %>
+    Dashboard
+<% end %>
+
+<div id="content-right">
+    <h5 class="text-light-grey">Latest Activity</h5>
+    <ul>
+        <li>
+            <div class="date">
+                11/22 @ 10:56am
+            </div>
+            <div class="subject">
+                Response to survey
+            </div>
+            <div class="details">
+                <a href="#">Jack Morgan</a> responded to the <a href="#">CFA Catering</a> survey.
+            </div>
+        </li>
+        <li>
+            <div class="date">
+                11/22 @ 08:22am
+            </div>
+            <div class="subject">
+                Response to survey
+            </div>
+            <div class="details">
+                <a href="#">Corey Phillips</a> responded to the <a href="#">CFA Catering</a> survey.
+            </div>
+        </li>
+        <li>
+            <div class="date">
+                11/22 @ 07:56am
+            </div>
+            <div class="subject">
+                Response to survey
+            </div>
+            <div class="details">
+                <a href="#">Linda Jones</a> responded to the <a href="#">CFA Catering</a> survey.
+            </div>
+        </li>
+        <li>
+            <div class="date">
+                11/21 @ 09:05pm
+            </div>
+            <div class="subject">
+                Created survey
+            </div>
+            <div class="details">
+                You created the <a href="#">CFA Catering</a> survey.
+            </div>
+        </li>
+    </ul>
+</div>
+<div id="content-left">
+    <h5 class="text-md-blue">Analysis</h5>
+    <div class="row">
+        <div class="col-md-4">
+            <div id="js-response" style="width: 100%; height: 275px;"></div>
+        </div>
+        <div class="col-md-4">
+            <div id="js-email" style="width: 100%; height: 275px;"></div>
+        </div>
+        <div class="col-md-4">
+            <div id="js-overall" style="width: 100%; height: 275px;"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        // donuts
+        var colors = Highcharts.getOptions().colors,
+        categories = ['MSIE', 'Firefox', 'Chrome', 'Safari', 'Opera'],
+        data1 = [{
+            color: '#3F51B5',
+            drilldown: {
+                name: 'MSIE versions',
+                categories: ['Responses'],
+                data: [0.65]
+            }
+        }, {
+            color: '#c2c2c2',
+            drilldown: {
+                name: 'Firefox versions',
+                categories: ['Not Responded'],
+                data: [0.35]
+            }
+        }],
+        data2 = [{
+            color: '#E91E63',
+            drilldown: {
+                name: 'Sent Emails',
+                categories: ['Sent Emails'],
+                data: [0.96]
+            }
+        }, {
+            color: '#c2c2c2',
+            drilldown: {
+                name: 'Bounced Emails',
+                categories: ['Bounced Emails'],
+                data: [0.04]
+            }
+        }],
+        data3 = [{
+            color: '#3C9F40',
+            drilldown: {
+                name: 'Overall',
+                categories: ['Satisfied'],
+                data: [0.96]
+            }
+        }, {
+            color: '#c2c2c2',
+            drilldown: {
+                name: 'Overall',
+                categories: ['Un-Satisfied'],
+                data: [0.04]
+            }
+        }],
+        responseData = [],
+        emailData = [],
+        overallData = [],
+        i,
+        j,
+        dataLen = data1.length,
+        drillDataLen,
+        brightness;
+
+        // Build the data arrays
+        for (i = 0; i < dataLen; i += 1) {
+            drillDataLen = data1[i].drilldown.data.length;
+            for (j = 0; j < drillDataLen; j += 1) {
+                brightness = 0.2 - (j / drillDataLen) / 5;
+                responseData.push({
+                    name: data1[i].drilldown.categories[j],
+                    y: data1[i].drilldown.data[j],
+                    color: Highcharts.Color(data1[i].color).brighten(brightness).get()
+                });
+                emailData.push({
+                    name: data2[i].drilldown.categories[j],
+                    y: data2[i].drilldown.data[j],
+                    color: Highcharts.Color(data2[i].color).brighten(brightness).get()
+                });
+                overallData.push({
+                    name: data3[i].drilldown.categories[j],
+                    y: data3[i].drilldown.data[j],
+                    color: Highcharts.Color(data3[i].color).brighten(brightness).get()
+                });
+            }
+        }
+
+        // Create the chart
+        Highcharts.chart('js-response', {
+            chart: {
+                type: 'pie',
+                backgroundColor: '#fafafa',
+                marginTop: -25
+            },
+            title: {
+                text: 'Responses',
+                align: 'center',
+                verticalAlign: 'bottom',
+                floating: true,
+                style: {
+                    color: '#3F51B5',
+                    fontSize: '1.3em',
+                    fontWeight: 'normal',
+                    textTransform: 'none'
+                }
+            },
+            subtitle: {
+                text: '14/26',
+                align: 'center',
+                y: 120,
+                style: {
+                    color: '#3F51B5',
+                    fontSize: '2.8em',
+                    fontWeight: 'normal',
+                    textTransform: 'none'
+                }
+            },
+            credits: false,
+            yAxis: {
+                title: {
+                    text: 'Total percent market share'
+                }
+            },
+            plotOptions: {
+                pie: {
+                    shadow: false,
+                    center: ['50%', '50%']
+                }
+            },
+            tooltip: {
+                valueSuffix: '%'
+            },
+            series: [{
+                name: 'Response',
+                data: responseData,
+                size: '100%',
+                innerSize: '90%',
+                dataLabels: false
+            }]
+        });
+
+        // Create the chart
+        Highcharts.chart('js-email', {
+            chart: {
+                type: 'pie',
+                backgroundColor: '#fafafa',
+                marginTop: -25
+            },
+            title: {
+                text: 'Emails',
+                align: 'center',
+                verticalAlign: 'bottom',
+                floating: true,
+                style: {
+                    color: '#E91E63',
+                    fontSize: '1.3em',
+                    fontWeight: 'normal',
+                    textTransform: 'none'
+                }
+            },
+            subtitle: {
+                text: '25/26',
+                align: 'center',
+                y: 120,
+                style: {
+                    color: '#E91E63',
+                    fontSize: '2.8em',
+                    fontWeight: 'normal',
+                    textTransform: 'none'
+                }
+            },
+            credits: false,
+            yAxis: {
+                title: {
+                    text: 'Total percent market share'
+                }
+            },
+            plotOptions: {
+                pie: {
+                    shadow: false,
+                    center: ['50%', '50%']
+                }
+            },
+            tooltip: {
+                valueSuffix: '%'
+            },
+            series: [{
+                name: 'Emails',
+                data: emailData,
+                size: '100%',
+                innerSize: '90%',
+                dataLabels: false
+            }]
+        });
+
+        // Create the chart
+        Highcharts.chart('js-overall', {
+            chart: {
+                type: 'pie',
+                backgroundColor: '#fafafa',
+                marginTop: -25
+            },
+            title: {
+                text: 'Overall',
+                align: 'center',
+                verticalAlign: 'bottom',
+                floating: true,
+                style: {
+                    color: '#4CAF50',
+                    fontSize: '1.3em',
+                    fontWeight: 'normal',
+                    textTransform: 'none'
+                }
+            },
+            subtitle: {
+                text: '95%',
+                align: 'center',
+                y: 120,
+                style: {
+                    color: '#4CAF50',
+                    fontSize: '2.8em',
+                    fontWeight: 'normal',
+                    textTransform: 'none'
+                }
+            },
+            credits: false,
+            plotOptions: {
+                pie: {
+                    shadow: false,
+                    center: ['50%', '50%']
+                }
+            },
+            tooltip: {
+                valueSuffix: '%'
+            },
+            series: [{
+                name: 'Overall Satisfaction',
+                data: overallData,
+                size: '100%',
+                innerSize: '90%',
+                dataLabels: false
+            }]
+        });
+    });
+</script>

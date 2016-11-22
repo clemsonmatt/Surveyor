@@ -1,0 +1,110 @@
+/* sidebar */
+.sidebar {
+    border: none;
+    background-color: #353942;
+}
+.navbar-brand i {
+    position: relative;
+    top: 6px;
+}
+
+#side-menu {
+    margin-top: 0px;
+    margin-bottom: 30px;
+}
+#side-menu > li {
+    width: 100%;
+}
+#side-menu > li > a {
+    color: #8CA2AD;
+    padding: 15px 25px;
+    font-size: 1.1em;
+    transition: all 0.3s ease 0s;
+    text-transform: uppercase;
+}
+#side-menu > li > a > i {
+    position: relative;
+    top: 6px;
+}
+#side-menu > li > a:hover,
+#side-menu > li > a:focus {
+    color: #bCd2dD;
+    background-color: #555962;
+}
+#side-menu > ul > .active {
+    color: #bCd2dD;
+    font-weight: bold;
+    background-color: #555962;
+}
+
+/* sb-admin-custom */
+.sidebar .sidebar-nav.navbar-collapse {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.sidebar .sidebar-search {
+    padding: 10px 25px;
+    background-color: #0Ca5a6;
+    width: 100%;
+}
+.sidebar .sidebar-search input {
+    background-color: inherit;
+    color: #fafafa;
+    box-shadow: none;
+    width: 100%;
+}
+.sidebar .sidebar-search input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #fafafa;
+}
+.sidebar .sidebar-search input::-moz-placeholder { /* Firefox 19+ */
+  color: #fafafa;
+}
+.sidebar .sidebar-search input:-ms-input-placeholder { /* IE 10+ */
+  color: #fafafa;
+}
+.sidebar .sidebar-search input:-moz-placeholder { /* Firefox 18- */
+  color: #fafafa;
+}
+
+.sidebar ul .current {
+    background: #2C3E50;
+}
+
+.sidebar ul li a.active {
+    background-color: #2C3E50;
+}
+
+.sidebar .arrow {
+    float: right;
+}
+
+.sidebar .fa.arrow:before {
+    content: "\f104";
+}
+
+.sidebar .active>a>.fa.arrow:before {
+    content: "\f107";
+}
+
+.sidebar .nav-second-level li,
+.sidebar .nav-third-level li {
+    border-bottom: 0!important;
+}
+
+.sidebar .nav-second-level li a {
+    padding-left: 37px;
+}
+
+.sidebar .nav-third-level li a {
+    padding-left: 52px;
+}
+
+@media(min-width:768px) {
+    .sidebar {
+        z-index: 1;
+        position: fixed;
+        width: 250px;
+        min-height: 100%;
+    }
+}
