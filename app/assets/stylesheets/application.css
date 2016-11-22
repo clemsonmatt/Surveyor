@@ -16,34 +16,53 @@
  *= require rails_bootstrap_forms
  */
 
- .color-white {
-    background-color: #fafafa;
- }
- .color-md-blue {
-    background-color: #527986;
- }
- .color-dark-blue {
-    background-color: #353942;
- }
- .color-light-grey-blue {
-    background-color: #8CA2AD;
- }
- .color-md-blue-2 {
-    background-color: #3E5A66;
- }
- .color-bright-blue {
-    background-color: #2CC5C6;
- }
- .color-orange {
-    background-color: #E2624B;
- }
+.color-white {
+background-color: #fafafa;
+}
+.color-md-blue {
+background-color: #527986;
+}
+.color-dark-blue {
+background-color: #353942;
+}
+.color-light-grey-blue {
+background-color: #8CA2AD;
+}
+.color-md-blue-2 {
+background-color: #3E5A66;
+}
+.color-bright-blue {
+background-color: #2CC5C6;
+}
+.color-orange {
+background-color: #E2624B;
+}
 
 h1, h2, h3, h4, h5 {
     text-transform: uppercase;
 }
- .text-light-grey {
-    color: #8CA2AD;
- }
- .text-md-blue {
-    color: #527986;
- }
+.text-light-grey {
+color: #8CA2AD;
+}
+.text-md-blue {
+color: #527986;
+}
+
+.breadcrumb {
+    margin: -30px;
+    margin-bottom: 30px;
+    background-color: #f2f2f2;
+    border-radius: none;
+    height: 50px;
+    font-size: 1.2em;
+    line-height: 2.6em;
+}
+.breadcrumb a {
+    color: #2CC5C6;
+}
+.breadcrumb .links {
+    float: right;
+}
+.breadcrumb .links a {
+    color: #fff;
+}

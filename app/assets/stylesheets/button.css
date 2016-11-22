@@ -26,7 +26,13 @@
 .btn-round-default:hover {
     color: #2196f3 !important;
 }
-
+.btn-round-primary {
+    color: #fff;
+    background: #E2624B;
+}
+.btn-round-primary:hover {
+    color: #fff !important;
+}
 .btn-round-danger {
     color: #ffffff;
     background-color: #e51c23;
@@ -80,7 +86,7 @@
 .btn-round-md {
     width: 35px;
     height: 35px;
-    line-height: 37px;
+    line-height: 50px;
     font-size: 15px;
     box-shadow: 0 3px 5px 0 rgba(0,0,0,0.16),0 3px 10px 0 rgba(0,0,0,0.12);
 }
