@@ -12,75 +12,95 @@
 
 <div class="row">
     <div class="col-lg-3 col-md-4 col-sm-6">
-        <h5 class="text-md-blue text-center">Seneca Santa</h5>
-        <div class="panel panel-default" style="margin-top: 35px;">
-            <div class="panel-body text-center text-muted">
-                <center style="margin-top: -45px; margin-bottom: 5px;">
-                    <div style="height: 75px; width: 75px; background-color: #2CC5C6; text-align: center; border-radius: 40px; color: #fff; line-height: 75px; font-size: 1.2em;
-                    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);">
-                        Created
+        <div class="survey-panel">
+            <%= link_to survey_path(1) do %>
+                <div class="survey-panel-header">
+                    Seneca Santa
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-body text-center text-muted">
+                        <center>
+                            <div class="bubble bubble-blue">
+                                Created
+                            </div>
+                        </center>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        </p>
+                        <hr />
+                        <h5 class="text-light-grey">Not Sent</h5>
                     </div>
-                </center>
-                <p style="line-height: 1.4em;">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                </p>
-                <hr style="margin: 5px 0px;" />
-                <h5 class="text-light-grey">Not Sent</h5>
-            </div>
+                </div>
+            <% end %>
         </div>
     </div>
     <div class="col-lg-3 col-md-4 col-sm-6">
-        <h5 class="text-md-blue text-center">CFA Catering</h5>
-        <div class="panel panel-default" style="margin-top: 35px;">
-            <div class="panel-body text-center text-muted">
-                <center style="margin-top: -45px; margin-bottom: 5px;">
-                    <div style="height: 75px; width: 75px; background-color: #2CC5C6; text-align: center; border-radius: 40px; color: #fff; line-height: 75px; font-size: 1.2em;
-                    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);">
-                        Active
+        <div class="survey-panel">
+            <%= link_to survey_path(1) do %>
+                <div class="survey-panel-header">
+                    CFA Catering
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-body text-center text-muted">
+                        <center>
+                            <div class="bubble bubble-blue">
+                                Active
+                            </div>
+                        </center>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        </p>
+                        <hr />
+                        <h5 class="text-light-grey">20/26 Responses</h5>
                     </div>
-                </center>
-                <p style="line-height: 1.4em;">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                </p>
-                <hr style="margin: 5px 0px;" />
-                <h5 class="text-light-grey">20/26 Responses</h5>
-            </div>
+                </div>
+            <% end %>
         </div>
     </div>
     <div class="col-lg-3 col-md-4 col-sm-6">
-        <h5 class="text-md-blue text-center">Football Tailgating</h5>
-        <div class="panel panel-default" style="margin-top: 35px;">
-            <div class="panel-body text-center text-muted">
-                <center style="margin-top: -45px; margin-bottom: 5px;">
-                    <div style="height: 75px; width: 75px; background-color: #F4a396; text-align: center; border-radius: 40px; color: #fff; line-height: 75px; font-size: 1.2em;
-                    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);">
-                        Expired aCd5d6
+        <div class="survey-panel">
+            <%= link_to survey_path(1) do %>
+                <div class="survey-panel-header">
+                    Football Tailgating
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-body text-center text-muted">
+                        <center>
+                            <div class="bubble bubble-red">
+                                Expired
+                            </div>
+                        </center>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        </p>
+                        <hr />
+                        <h5 class="text-light-grey">11/01 &ndash; 11/14</h5>
                     </div>
-                </center>
-                <p style="line-height: 1.4em;">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                </p>
-                <hr style="margin: 5px 0px;" />
-                <h5 class="text-light-grey">11/01 &ndash; 11/14</h5>
-            </div>
+                </div>
+            <% end %>
         </div>
     </div>
     <div class="col-lg-3 col-md-4 col-sm-6">
-        <h5 class="text-md-blue text-center">Clemson Events</h5>
-        <div class="panel panel-default" style="margin-top: 35px;">
-            <div class="panel-body text-center text-muted">
-                <center style="margin-top: -45px; margin-bottom: 5px;">
-                    <div style="height: 75px; width: 75px; background-color: #aaa; text-align: center; border-radius: 40px; color: #fff; line-height: 75px; font-size: 1.2em;
-                    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);">
-                        Archived
+        <div class="survey-panel">
+            <%= link_to survey_path(1) do %>
+                <div class="survey-panel-header">
+                    Clemson Events
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-body text-center text-muted">
+                        <center>
+                            <div class="bubble bubble-grey">
+                                Archived
+                            </div>
+                        </center>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        </p>
+                        <hr />
+                        <h5 class="text-light-grey">10/10 &ndash; 10/17</h5>
                     </div>
-                </center>
-                <p style="line-height: 1.4em;">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                </p>
-                <hr style="margin: 5px 0px;" />
-                <h5 class="text-light-grey">10/10 &ndash; 10/17</h5>
-            </div>
+                </div>
+            <% end %>
         </div>
     </div>
 </div>

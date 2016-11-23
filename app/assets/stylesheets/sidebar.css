@@ -51,21 +51,24 @@
 }
 .sidebar .sidebar-search input {
     background-color: inherit;
-    color: #fafafa;
+    color: #3E5A66;
     box-shadow: none;
     width: 100%;
 }
+.sidebar .sidebar-search input:focus {
+    outline: none;
+}
 .sidebar .sidebar-search input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: #fafafa;
+  color: #3E5A66;
 }
 .sidebar .sidebar-search input::-moz-placeholder { /* Firefox 19+ */
-  color: #fafafa;
+  color: #3E5A66;
 }
 .sidebar .sidebar-search input:-ms-input-placeholder { /* IE 10+ */
-  color: #fafafa;
+  color: #3E5A66;
 }
 .sidebar .sidebar-search input:-moz-placeholder { /* Firefox 18- */
-  color: #fafafa;
+  color: #3E5A66;
 }
 
 .sidebar ul .current {
