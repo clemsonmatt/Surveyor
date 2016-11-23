@@ -2,7 +2,9 @@
 
 <ol class="breadcrumb">
     <div class="links">
-        <a href="#" class="btn-round btn-round-md btn-round-primary"><%= material_icon.add.md_24 %></a>
+        <%= link_to new_survey_path, class: 'btn-round btn-round-md btn-round-primary' do %>
+            <%= material_icon.add.md_24 %>
+        <% end %>
     </div>
     <li>
         <%= link_to "Surveys", survey_index_path %>
@@ -11,96 +13,29 @@
 </ol>
 
 <div class="row">
-    <div class="col-lg-3 col-md-4 col-sm-6">
-        <div class="survey-panel">
-            <%= link_to survey_path(1) do %>
-                <div class="survey-panel-header">
-                    Seneca Santa
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-body text-center text-muted">
-                        <center>
-                            <div class="bubble bubble-blue">
-                                Created
-                            </div>
-                        </center>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        </p>
-                        <hr />
-                        <h5 class="text-light-grey">Not Sent</h5>
+    <% @surveys.each do |survey| %>
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="survey-panel">
+                <%= link_to survey_path(survey.id) do %>
+                    <div class="survey-panel-header">
+                        <%= survey.title %>
                     </div>
-                </div>
-            <% end %>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-4 col-sm-6">
-        <div class="survey-panel">
-            <%= link_to survey_path(1) do %>
-                <div class="survey-panel-header">
-                    CFA Catering
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-body text-center text-muted">
-                        <center>
-                            <div class="bubble bubble-blue">
-                                Active
-                            </div>
-                        </center>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        </p>
-                        <hr />
-                        <h5 class="text-light-grey">20/26 Responses</h5>
+                    <div class="panel panel-default">
+                        <div class="panel-body text-center text-muted">
+                            <center>
+                                <div class="bubble bubble-<%= survey.active ? survey.status : 'expired' %>">
+                                    <%= survey.active ? survey.status.capitalize : 'Expired' %>
+                                </div>
+                            </center>
+                            <p>
+                                <%= survey.description %>
+                            </p>
+                            <hr />
+                            <h5 class="text-light-grey">Not Sent</h5>
+                        </div>
                     </div>
-                </div>
-            <% end %>
+                <% end %>
+            </div>
         </div>
-    </div>
-    <div class="col-lg-3 col-md-4 col-sm-6">
-        <div class="survey-panel">
-            <%= link_to survey_path(1) do %>
-                <div class="survey-panel-header">
-                    Football Tailgating
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-body text-center text-muted">
-                        <center>
-                            <div class="bubble bubble-red">
-                                Expired
-                            </div>
-                        </center>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        </p>
-                        <hr />
-                        <h5 class="text-light-grey">11/01 &ndash; 11/14</h5>
-                    </div>
-                </div>
-            <% end %>
-        </div>
-    </div>
-    <div class="col-lg-3 col-md-4 col-sm-6">
-        <div class="survey-panel">
-            <%= link_to survey_path(1) do %>
-                <div class="survey-panel-header">
-                    Clemson Events
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-body text-center text-muted">
-                        <center>
-                            <div class="bubble bubble-grey">
-                                Archived
-                            </div>
-                        </center>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        </p>
-                        <hr />
-                        <h5 class="text-light-grey">10/10 &ndash; 10/17</h5>
-                    </div>
-                </div>
-            <% end %>
-        </div>
-    </div>
+    <% end %>
 </div>

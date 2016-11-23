@@ -61,16 +61,16 @@
             <%= link_to "Surveys", survey_index_path %>
         </li>
         <li class="active">
-            CFA Catering
+            <%= @survey.title %>
         </li>
     </ol>
 
-    <div class="bubble bubble-sm bubble-blue pull-right">
-        Active
+    <div class="pull-right bubble bubble-sm bubble-<%= @survey.active ? @survey.status : 'expired' %>">
+        <%= @survey.active ? @survey.status.capitalize : 'Expired' %>
     </div>
     <h3 class="text-md-blue" style="margin: 40px 0px 30px 0px;">
-        CFA Catering
-        <small>11/05 &ndash; 11/20</small>
+        <%= @survey.title %>
+        <small><%= @survey.start_date.strftime("%m/%d/%y") %> &ndash; <%= @survey.end_date.strftime("%m/%d/%y") %></small>
     </h3>
 
     <ul class="nav nav-tabs nav-justified">
@@ -83,7 +83,7 @@
     <div class="tab-content" style="margin-top: 30px;">
         <div class="tab-pane fade in active" id="overview">
             <h4 class="text-md-blue">Description</h4>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.
+            <%= @survey.description %>
             <br /><br />
             <h4 class="text-md-blue">Analysis</h4>
             <div class="row">
