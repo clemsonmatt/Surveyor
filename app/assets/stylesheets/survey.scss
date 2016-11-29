@@ -1,0 +1,48 @@
+// Place all the styles related to the Survey controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.survey-panel {
+
+    a:hover {
+        text-decoration: none;
+    }
+
+    .survey-panel-header {
+        color: #527986;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 1.5em;
+    }
+
+    .panel {
+        margin-top: 35px;
+        min-height: 150px;
+        max-height: 150px;
+
+        .panel-body {
+            center {
+                margin-top: -45px;
+                margin-bottom: 10px;
+            }
+
+            p {
+                line-height: 1.4em;
+                max-height: 35px;
+                overflow: hidden;
+            }
+
+            hr {
+                margin: 5px 0px;
+            }
+        }
+
+        .panel-footer {
+            background-color: #f2f2f2;
+            position: absolute;
+            bottom: 23px;
+            left: 15px;
+            right: 15px;
+        }
+    }
+}

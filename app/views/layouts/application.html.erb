@@ -24,8 +24,16 @@
                     </div>
 
                     <ul id="side-menu" class="nav">
-                        <li><a href="#"><%= material_icon.dashboard %> Dashboard</a></li>
-                        <li><a href="#"><%= material_icon.assignment %> Surveys</a></li>
+                        <li>
+                            <%= link_to dashboard_index_path do %>
+                                <%= material_icon.dashboard %> Dashboard
+                            <% end %>
+                        </li>
+                        <li>
+                            <%= link_to survey_index_path do %>
+                                <%= material_icon.assignment %> Surveys
+                            <% end %>
+                        </li>
                         <li><a href="#"><%= material_icon.people %> Clients</a></li>
                         <li><a href="#"><%= material_icon.settings %> Manage</a></li>
                     </ul>

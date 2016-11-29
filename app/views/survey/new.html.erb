@@ -1,0 +1,19 @@
+<%= render "layout" %>
+
+<ol class="breadcrumb">
+    <li>
+        <%= link_to "Surveys", survey_index_path %>
+    </li>
+    <li class="active">Add Survey</li>
+</ol>
+
+<h4 class="text-md-blue">Survey Details</h4>
+<%= bootstrap_form_for @survey, url: {action: 'create'} do |f| %>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <%= f.text_field :title, class: "form-control" %>
+            <%= f.text_area :description, class: "form-control", rows: 4 %>
+            <%= f.submit class: "btn btn-orange" %>
+        </div>
+    </div>
+<% end %>
