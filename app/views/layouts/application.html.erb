@@ -35,7 +35,11 @@
                             <% end %>
                         </li>
                         <li><a href="#"><%= material_icon.people %> Clients</a></li>
-                        <li><a href="#"><%= material_icon.settings %> Manage</a></li>
+                        <li>
+                            <%= link_to manage_default_index_path do %>
+                                <%= material_icon.settings %> Manage
+                            <% end %>
+                        </li>
                     </ul>
                 </div>
             </div>
