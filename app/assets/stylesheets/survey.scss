@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .survey-panel {
+
     a:hover {
         text-decoration: none;
     }
@@ -16,6 +17,8 @@
 
     .panel {
         margin-top: 35px;
+        min-height: 150px;
+        max-height: 150px;
 
         .panel-body {
             center {
@@ -25,11 +28,21 @@
 
             p {
                 line-height: 1.4em;
+                max-height: 35px;
+                overflow: hidden;
             }
 
             hr {
                 margin: 5px 0px;
             }
+        }
+
+        .panel-footer {
+            background-color: #f2f2f2;
+            position: absolute;
+            bottom: 23px;
+            left: 15px;
+            right: 15px;
         }
     }
 }

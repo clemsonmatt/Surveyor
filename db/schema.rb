@@ -10,16 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161123210929) do
+ActiveRecord::Schema.define(version: 20161129164952) do
 
   create_table "surveys", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
     t.text     "description", limit: 65535
-    t.date     "start_date"
-    t.date     "end_date"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
-    t.string   "status"
+    t.boolean  "active"
   end
 
 end

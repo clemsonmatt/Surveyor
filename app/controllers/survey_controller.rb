@@ -1,6 +1,6 @@
 class SurveyController < ApplicationController
     def index
-        @surveys = Survey.all.order(start_date: :asc)
+        @surveys = Survey.all.order(created_at: :desc)
     end
 
     def show
@@ -13,7 +13,7 @@ class SurveyController < ApplicationController
 
     def create
         @survey        = Survey.new(survey_params)
-        @survey.status = 'created'
+        @survey.active = true
 
         if @survey.save
             redirect_to @survey
@@ -24,6 +24,6 @@ class SurveyController < ApplicationController
 
     private
         def survey_params
-            params.require(:survey).permit(:title, :description, :start_date, :end_date)
+            params.require(:survey).permit(:title, :description)
         end
 end

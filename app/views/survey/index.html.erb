@@ -13,6 +13,10 @@
 </ol>
 
 <div class="row">
+    <% if @surveys.length == 0 %>
+        <h5 class="text-md-blue">No Surveys</h5>
+    <% end %>
+
     <% @surveys.each do |survey| %>
         <div class="col-lg-3 col-md-4 col-sm-6">
             <div class="survey-panel">
@@ -23,15 +27,16 @@
                     <div class="panel panel-default">
                         <div class="panel-body text-center text-muted">
                             <center>
-                                <div class="bubble bubble-<%= survey.active ? survey.status : 'expired' %>">
-                                    <%= survey.active ? survey.status.capitalize : 'Expired' %>
+                                <div class="bubble bubble-<%= survey.active ? 'active' : 'expired' %>">
+                                    <%= survey.active ? 'Active' : 'Expired' %>
                                 </div>
                             </center>
                             <p>
                                 <%= survey.description %>
                             </p>
-                            <hr />
-                            <h5 class="text-light-grey">Not Sent</h5>
+                        </div>
+                        <div class="panel-footer text-center text-light-grey">
+                            5/7 Responses
                         </div>
                     </div>
                 <% end %>

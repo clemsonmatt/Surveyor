@@ -65,12 +65,11 @@
         </li>
     </ol>
 
-    <div class="pull-right bubble bubble-sm bubble-<%= @survey.active ? @survey.status : 'expired' %>">
-        <%= @survey.active ? @survey.status.capitalize : 'Expired' %>
+    <div class="pull-right bubble bubble-sm bubble-<%= @survey.active ? 'active' : 'expired' %>">
+        <%= @survey.active ? 'Active' : 'Expired' %>
     </div>
     <h3 class="text-md-blue" style="margin: 40px 0px 30px 0px;">
         <%= @survey.title %>
-        <small><%= @survey.start_date.strftime("%m/%d/%y") %> &ndash; <%= @survey.end_date.strftime("%m/%d/%y") %></small>
     </h3>
 
     <ul class="nav nav-tabs nav-justified">
@@ -134,11 +133,6 @@
         <!-- participants -->
         <div class="tab-pane fade" id="participants">
             <h4 class="text-md-blue">
-                <div class="pull-right">
-                    <a href="#" class="btn-round btn-round-md btn-round-primary-simple">
-                        <%= material_icon.email %>
-                    </a>
-                </div>
                 Participants
             </h4>
             <table class="table table-striped table-hover">
@@ -147,7 +141,14 @@
                     <th>Email</th>
                     <th>Company</th>
                     <th>Title</th>
-                    <th style="width: 75px;"></th>
+                    <th style="width: 75px;">
+                        <a href="#" class="btn-round btn-round-sm btn-round-danger pull-right" style="margin-left: 5px;">
+                            <%= material_icon.clear.style('font-size: 16px;') %>
+                        </a>
+                        <a href="#" class="btn-round btn-round-sm btn-round-primary-simple pull-right">
+                            <%= material_icon.email.style('font-size: 16px;') %>
+                        </a>
+                    </th>
                 </thead>
                 <% for i in 0..19 %>
                     <tr>
@@ -161,7 +162,7 @@
                             <a href="#" class="btn-round btn-round-sm btn-round-danger-simple pull-right" style="margin-left: 5px;">
                                 <%= material_icon.clear.style('font-size: 16px;') %>
                             </a>
-                            <a href="#" class="btn-round btn-round-sm btn-round-default pull-right">
+                            <a href="#" class="btn-round btn-round-sm btn-round-primary pull-right">
                                 <%= material_icon.email.style('font-size: 16px;') %>
                             </a>
                         </td>
