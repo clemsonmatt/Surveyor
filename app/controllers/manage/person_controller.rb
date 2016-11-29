@@ -40,7 +40,7 @@ class Manage::PersonController < ApplicationController
         person = Person.find(params[:id])
         person.destroy
 
-        redirect_to person_index_path
+        redirect_to manage_person_index_path
     end
 
     private

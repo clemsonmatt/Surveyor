@@ -1,0 +1,49 @@
+<%= render "manage/layout" %>
+
+<ol class="breadcrumb">
+    <div class="links">
+        <%= link_to manage_person_path(@person), method: :delete, class: 'btn-round btn-round-md btn-round-danger' do %>
+            <%= material_icon.delete_forever %>
+        <% end %>
+    </div>
+    <li>
+        <%= link_to "People", manage_person_index_path %>
+    </li>
+    <li>
+        <%= link_to @person, manage_person_path(@person) %>
+    </li>
+    <li class="active">
+        Edit Person
+    </li>
+</ol>
+
+<h4 class="text-md-blue">Person Details</h4>
+<%= bootstrap_form_for @person, url: {action: 'update'} do |f| %>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <% if @person.errors.any? %>
+                <div id="error_explanation">
+                    <h4 class="text-danger">
+                        <%= pluralize(@person.errors.count, "error") %> prohibited this person from being saved:
+                    </h4>
+                    <ul>
+                        <% @person.errors.full_messages.each do |msg| %>
+                            <li class="text-danger"><%= msg %></li>
+                        <% end %>
+                    </ul>
+                </div>
+            <% end %>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <%= f.text_field :first_name, class: "form-control" %>
+                    <%= f.text_field :last_name, class: "form-control" %>
+                </div>
+                <div class="col-md-6">
+                    <%= f.text_field :email, class: "form-control" %>
+                </div>
+            </div>
+            <%= f.submit class: "btn btn-orange" %>
+        </div>
+    </div>
+<% end %>

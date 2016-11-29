@@ -52,6 +52,11 @@
 
 <div id="content-left">
     <ol class="breadcrumb">
+        <div class="links">
+            <%= link_to edit_manage_person_path(@person), class: 'btn-round btn-round-md btn-round-primary' do %>
+                <%= material_icon.edit %>
+            <% end %>
+        </div>
         <li>
             <%= link_to "People", manage_person_index_path %>
         </li>
