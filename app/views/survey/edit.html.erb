@@ -1,6 +1,11 @@
 <%= render "layout" %>
 
 <ol class="breadcrumb">
+    <div class="links">
+        <%= link_to survey_path(@survey), method: :delete, class: "btn-round btn-round-md btn-round-danger" do %>
+            <%= material_icon.delete_forever %>
+        <% end %>
+    </div>
     <li>
         <%= link_to "Surveys", survey_index_path %>
     </li>
