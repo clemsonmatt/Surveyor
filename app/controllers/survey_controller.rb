@@ -11,6 +11,10 @@ class SurveyController < ApplicationController
         @survey = Survey.new
     end
 
+    def edit
+        @survey = Survey.find(params[:id])
+    end
+
     def create
         @survey        = Survey.new(survey_params)
         @survey.active = true
@@ -19,6 +23,16 @@ class SurveyController < ApplicationController
             redirect_to @survey
         else
             render 'new'
+        end
+    end
+
+    def update
+        @survey = Survey.find(params[:id])
+
+        if @survey.update(survey_params)
+            redirect_to @survey
+        else
+            render 'edit'
         end
     end
 

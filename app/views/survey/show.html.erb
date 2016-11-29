@@ -53,9 +53,9 @@
 <div id="content-left">
     <ol class="breadcrumb">
         <div class="links">
-            <a href="#" class="btn-round btn-round-md btn-round-primary">
+            <%= link_to edit_survey_path(@survey), class: 'btn-round btn-round-md btn-round-primary' do %>
                 <%= material_icon.edit %>
-            </a>
+            <% end %>
         </div>
         <li>
             <%= link_to "Surveys", survey_index_path %>
