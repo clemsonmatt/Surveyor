@@ -1,4 +1,7 @@
 class Manage::PermissionController < ApplicationController
+    before_action :logged_in?
+    before_action :has_manage_role?
+
     def new
         @permission = Permission.new
     end

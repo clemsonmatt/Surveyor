@@ -11,4 +11,8 @@ class Person < ApplicationRecord
     validates :first_name, presence: true
     validates :last_name, presence: true
     validates :email, presence: true
+
+    def has_role?(role)
+        permissions.any? { |permission| permission.role == role }
+    end
 end

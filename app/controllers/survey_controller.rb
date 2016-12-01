@@ -1,4 +1,6 @@
 class SurveyController < ApplicationController
+    before_action :logged_in?
+    
     def index
         @surveys = Survey.all.order(created_at: :desc)
     end

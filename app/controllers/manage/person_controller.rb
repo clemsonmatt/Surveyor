@@ -1,4 +1,7 @@
 class Manage::PersonController < ApplicationController
+    before_action :logged_in?
+    before_action :has_manage_role?
+    
     def index
         @people = all_people
     end
