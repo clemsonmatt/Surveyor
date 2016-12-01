@@ -65,11 +65,17 @@
         </li>
     </ol>
 
-    <div class="pull-right bubble bubble-sm bubble-<%= @survey.active ? 'active' : 'expired' %>">
-        <%= @survey.active ? 'Active' : 'Expired' %>
-    </div>
+    <%= link_to survey_preview_path, class: 'btn-round btn-round-md btn-round-primary-simple pull-right', target: "_blank" do %>
+        <%= material_icon.search %>
+    <% end %>
+
     <h3 class="text-md-blue" style="margin: 40px 0px 30px 0px;">
         <%= @survey.title %>
+        <small style="font-size: 0.4em;">
+            <span class="label label-<%= @survey.active ? 'success' : 'warning' %>">
+                <%= @survey.active ? 'Active' : 'Expired' %>
+            </span>
+        </small>
     </h3>
 
     <ul class="nav nav-tabs nav-justified">

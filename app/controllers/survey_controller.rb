@@ -50,6 +50,12 @@ class SurveyController < ApplicationController
         redirect_to survey_index_path
     end
 
+    def preview
+        @survey = Survey.find(params[:id])
+
+        render :layout => false
+    end
+
     private
         def survey_params
             params.require(:survey).permit(:title, :description)

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Surveyor</title>
+            <%= csrf_meta_tags %>
+
+            <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+            <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    </head>
+
+    <body>
+        <div class="container">
+            <h3 class="text-md-blue"><%= @survey %></h3>
+            <h6 class="text-light-grey">Created by: <%= @survey.person %></h6>
+            <hr>
+            <div class="text-light-grey well">
+                <%= @survey.description %>
+            </div>
+
+            <% @survey.questions.each_with_index do |question, i| %>
+                <div class="text-light-grey well">
+                    <h5 class="text-md-blue"><%= question.title %></h5>
+                    <p>
+                        <% if question.question_type == 'text' %>
+                            <%= text_field :response, false, class: 'form-control' %>
+                        <% elsif question.question_type == 'yes_no' %>
+                            <%= select_tag :response, options_for_select(['Yes', 'No']), class: "form-control", prompt: '-- Yes or No --' %>
+                        <% elsif question.question_type == 'select_one' %>
+                            <% answers = question.possible_answers.split(/\s*,\s*/) %>
+                            <% answers.each do |answer| %>
+                                <%= radio_button_tag :response, answer, false %>
+                                <%= answer %>
+                                <br>
+                            <% end %>
+                        <% elsif question.question_type == 'select_all' %>
+                            <% answers = question.possible_answers.split(/\s*,\s*/) %>
+                            <% answers.each do |answer| %>
+                                <%= check_box_tag :response, answer, false %>
+                                <%= answer %>
+                                <br>
+                            <% end %>
+                        <% end %>
+                    </p>
+                </div>
+            <% end %>
+        </div>
+    </body>
+</html>
