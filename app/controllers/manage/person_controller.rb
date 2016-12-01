@@ -24,6 +24,7 @@ class Manage::PersonController < ApplicationController
         @person.active = true
 
         if @person.save
+            flash[:success] = 'Person added'
             redirect_to manage_person_path(@person)
         else
             render 'new'
@@ -41,18 +42,8 @@ class Manage::PersonController < ApplicationController
 
         @person = Person.find(params[:id])
 
-        updated_params = person_params
-
-        new_permissions = []
-        updated_params[:permissions].each do |permission_id|
-            if permission_id != ""
-                new_permissions << Permission.find(permission_id)
-            end
-        end
-
-        updated_params[:permissions] = new_permissions
-
-        if @person.update(updated_params)
+        if @person.update(person_params)
+            flash[:success] = 'Person saved'
             redirect_to manage_person_path(@person)
         else
             render 'edit'
@@ -65,7 +56,9 @@ class Manage::PersonController < ApplicationController
         person = Person.find(params[:id])
         person.destroy
 
-        redirect_to manage_person_index_path
+        flash[:danger] = 'Person removed'
+
+        redirect_to manage_default_index_path
     end
 
     def add_permission

@@ -11,6 +11,7 @@ class Manage::PermissionController < ApplicationController
         @permission.role = @permission.role.upcase
 
         if @permission.save
+            flash[:success] = 'Permission added'
             redirect_to manage_default_index_path
         else
             render 'new'
@@ -19,7 +20,9 @@ class Manage::PermissionController < ApplicationController
 
     def destroy
         permission = Permission.find(params[:id])
-        permission.destroy
+        # permission.destroy
+
+        flash[:danger] = 'Permission removed'
 
         redirect_to manage_default_index_path
     end
