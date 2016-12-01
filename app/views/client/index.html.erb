@@ -31,9 +31,9 @@
             <td><%= client.first_name %></td>
             <td><%= client.last_name %></td>
             <td><%= client.email %></td>
-            <td><%= client.phone %></td>
-            <td><%= client.title %></td>
-            <td><%= client.company %></td>
+            <td><%= client.phone ? client.phone : '&mdash;'.html_safe %></td>
+            <td><%= client.title ? client.title : '&mdash;'.html_safe %></td>
+            <td><%= client.company ? client.company : '&mdash;'.html_safe %></td>
             <td>
                 <%= link_to client_path(client), class: 'btn-round btn-round-sm btn-round-primary' do %>
                     <%= material_icon.description.style('font-size: 16px;') %>

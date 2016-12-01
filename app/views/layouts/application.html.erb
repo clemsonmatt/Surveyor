@@ -44,11 +44,13 @@
                                     <%= material_icon.people %> Clients
                                 <% end %>
                             </li>
-                            <li>
-                                <%= link_to manage_default_index_path do %>
-                                    <%= material_icon.settings %> Manage
-                                <% end %>
-                            </li>
+                            <% if @user.has_role?('MANAGE_READ') %>
+                                <li>
+                                    <%= link_to manage_default_index_path do %>
+                                        <%= material_icon.settings %> Manage
+                                    <% end %>
+                                </li>
+                            <% end %>
                         </ul>
                     </div>
                 </div>

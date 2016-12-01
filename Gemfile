@@ -51,3 +51,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'material_icons'
 gem 'bootstrap_form'
 gem 'highcharts-rails'
+gem 'nilify_blanks'

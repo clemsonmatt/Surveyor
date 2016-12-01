@@ -13,15 +13,15 @@
 ActiveRecord::Schema.define(version: 20161201181214) do
 
   create_table "clients", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.text     "first_name", limit: 65535
-    t.text     "last_name",  limit: 65535
-    t.text     "email",      limit: 65535
-    t.text     "phone",      limit: 65535
-    t.text     "title",      limit: 65535
-    t.text     "company",    limit: 65535
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "title"
+    t.string   "company"
     t.integer  "person_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["person_id"], name: "index_clients_on_person_id", using: :btree
   end
 
