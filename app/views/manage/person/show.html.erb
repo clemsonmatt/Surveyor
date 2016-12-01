@@ -53,8 +53,10 @@
 <div id="content-left">
     <ol class="breadcrumb">
         <div class="links">
-            <%= link_to edit_manage_person_path(@person), class: 'btn-round btn-round-md btn-round-primary' do %>
-                <%= material_icon.edit %>
+            <% if @user.has_role?('MANAGE_WRITE') %>
+                <%= link_to edit_manage_person_path(@person), class: 'btn-round btn-round-md btn-round-primary' do %>
+                    <%= material_icon.edit %>
+                <% end %>
             <% end %>
         </div>
         <li>
@@ -100,9 +102,17 @@
                         <td><%= permission.role %></td>
                         <td>
                             <% if @person.permissions.include?(permission) %>
-                                <%= check_box_tag false, permission.id, true, {:class => 'js-permission', :'data-url' => manage_person_remove_permission_path(:id => @person.id, :permission_id => permission.id)} %>
+                                <% if @user.has_role?('MANAGE_WRITE') %>
+                                    <%= check_box_tag false, permission.id, true, {:class => 'js-permission', :'data-url' => manage_person_remove_permission_path(:id => @person.id, :permission_id => permission.id)} %>
+                                <% else %>
+                                    <%= material_icon.check_box %>
+                                <% end %>
                             <% else %>
-                                <%= check_box_tag false, permission.id, false, {:class => 'js-permission', :'data-url' => manage_person_add_permission_path(:id => @person.id, :permission_id => permission.id)} %>
+                                <% if @user.has_role?('MANAGE_WRITE') %>
+                                    <%= check_box_tag false, permission.id, false, {:class => 'js-permission', :'data-url' => manage_person_add_permission_path(:id => @person.id, :permission_id => permission.id)} %>
+                                <% else %>
+                                    <%= material_icon.check_box_outline_blank %>
+                                <% end %>
                             <% end %>
                         </td>
                     </tr>

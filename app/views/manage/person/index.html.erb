@@ -2,8 +2,10 @@
 
 <ol class="breadcrumb">
     <div class="links">
-        <%= link_to new_manage_person_path, class: 'btn-round btn-round-md btn-round-primary' do %>
-            <%= material_icon.add %>
+        <% if @user.has_role?('MANAGE_WRITE') %>
+            <%= link_to new_manage_person_path, class: 'btn-round btn-round-md btn-round-primary' do %>
+                <%= material_icon.add %>
+            <% end %>
         <% end %>
     </div>
     <li>

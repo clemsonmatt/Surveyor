@@ -1,6 +1,6 @@
 class Manage::PermissionController < ApplicationController
     before_action :logged_in?
-    before_action :has_manage_role?
+    before_action { |c| c.has_role? 'MANAGE_WRITE' }
 
     def new
         @permission = Permission.new

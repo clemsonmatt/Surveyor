@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
         end
     end
 
-    private
+    protected
         def logged_in?
             @user ||= Person.find(session[:user_id]) if session[:user_id]
 
@@ -26,14 +26,11 @@ class ApplicationController < ActionController::Base
             end
         end
 
-        def has_manage_role?
+        def has_role?(role)
             @user ||= Person.find(session[:user_id]) if session[:user_id]
 
-            if ! @user.has_role?('MANAGE_READ')
+            if ! @user.has_role?(role)
                 render_403
             end
         end
-
-        helper_method :logged_in?
-        helper_method :has_manage_role?
 end

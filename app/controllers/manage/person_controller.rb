@@ -1,7 +1,7 @@
 class Manage::PersonController < ApplicationController
     before_action :logged_in?
-    before_action :has_manage_role?
-    
+    before_action { |c| c.has_role? 'MANAGE_READ' }
+
     def index
         @people = all_people
     end
@@ -12,10 +12,14 @@ class Manage::PersonController < ApplicationController
     end
 
     def new
+        has_role?('MANAGE_WRITE')
+
         @person = Person.new
     end
 
     def create
+        has_role?('MANAGE_WRITE')
+
         @person        = Person.new(person_params)
         @person.active = true
 
@@ -27,10 +31,14 @@ class Manage::PersonController < ApplicationController
     end
 
     def edit
+        has_role?('MANAGE_WRITE')
+
         @person = Person.find(params[:id])
     end
 
     def update
+        has_role?('MANAGE_WRITE')
+
         @person = Person.find(params[:id])
 
         updated_params = person_params
@@ -52,6 +60,8 @@ class Manage::PersonController < ApplicationController
     end
 
     def destroy
+        has_role?('MANAGE_WRITE')
+
         person = Person.find(params[:id])
         person.destroy
 
@@ -59,6 +69,10 @@ class Manage::PersonController < ApplicationController
     end
 
     def add_permission
+        if ! @user.has_role?('MANAGE_WRITE')
+            return
+        end
+
         @person    = Person.find(params[:id])
         permission = Permission.find(params[:permission_id])
 
@@ -69,6 +83,10 @@ class Manage::PersonController < ApplicationController
     end
 
     def remove_permission
+        if ! @user.has_role?('MANAGE_WRITE')
+            return
+        end
+
         @person    = Person.find(params[:id])
         permission = Permission.find(params[:permission_id])
 
