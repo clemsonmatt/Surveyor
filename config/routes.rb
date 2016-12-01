@@ -3,7 +3,8 @@ Rails.application.routes.draw do
 
     resources :dashboard,
         :survey,
-        :sessions
+        :sessions,
+        :client
 
     namespace :manage do
         resources :person,

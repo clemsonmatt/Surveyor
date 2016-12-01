@@ -1,2 +1,44 @@
-<h1>Client#index</h1>
-<p>Find me in app/views/client/index.html.erb</p>
+<%= render 'layout' %>
+
+<ol class="breadcrumb">
+    <div class="links">
+        <%= link_to new_client_path, class: 'btn-round btn-round-md btn-round-primary' do %>
+            <%= material_icon.add %>
+        <% end %>
+    </div>
+    <li><%= link_to "Clients", client_index_path %></li>
+    <li class="active">All Clients</li>
+</ol>
+
+<h3 class="text-md-blue">Clients</h3>
+<table class="table table-striped">
+    <thead>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Title</th>
+        <th>Company</th>
+        <th width="1%"></th>
+    </thead>
+    <% if @clients.length == 0 %>
+        <tr>
+            <td colspan="7" class="text-light-grey">None</td>
+        </tr>
+    <% end %>
+    <% @clients.each do |client| %>
+        <tr>
+            <td><%= client.first_name %></td>
+            <td><%= client.last_name %></td>
+            <td><%= client.email %></td>
+            <td><%= client.phone %></td>
+            <td><%= client.title %></td>
+            <td><%= client.company %></td>
+            <td>
+                <%= link_to client_path(client), class: 'btn-round btn-round-sm btn-round-primary' do %>
+                    <%= material_icon.description.style('font-size: 16px;') %>
+                <% end %>
+            </td>
+        </tr>
+    <% end %>
+</table>

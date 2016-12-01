@@ -1,3 +1,9 @@
 // Place all the styles related to the client controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.dl-horizontal {
+    dt:not(:first-child), dd:not(:first-child) {
+        margin-top: 5px;
+    }
+}

@@ -39,7 +39,11 @@
                                     <%= material_icon.assignment %> Surveys
                                 <% end %>
                             </li>
-                            <li><a href="#"><%= material_icon.people %> Clients</a></li>
+                            <li>
+                                <%= link_to client_index_path do %>
+                                    <%= material_icon.people %> Clients
+                                <% end %>
+                            </li>
                             <li>
                                 <%= link_to manage_default_index_path do %>
                                     <%= material_icon.settings %> Manage
