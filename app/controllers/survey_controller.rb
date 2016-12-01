@@ -1,4 +1,6 @@
 class SurveyController < ApplicationController
+    before_action :logged_in?
+
     def index
         @surveys = Survey.all.order(created_at: :desc)
     end
@@ -20,6 +22,7 @@ class SurveyController < ApplicationController
         @survey.active = true
 
         if @survey.save
+            flash[:success] = 'Survey added'
             redirect_to @survey
         else
             render 'new'
@@ -30,6 +33,7 @@ class SurveyController < ApplicationController
         @survey = Survey.find(params[:id])
 
         if @survey.update(survey_params)
+            flash[:success] = 'Survey saved'
             redirect_to @survey
         else
             render 'edit'
@@ -39,6 +43,8 @@ class SurveyController < ApplicationController
     def destroy
         survey   = Survey.find(params[:id])
         survey.destroy
+
+        flash[:danger] = 'Survey removed'
 
         redirect_to survey_index_path
     end

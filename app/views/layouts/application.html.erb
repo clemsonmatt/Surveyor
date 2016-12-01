@@ -9,51 +9,73 @@
     </head>
 
     <body>
-        <div id="wrapper">
-            <!-- main nav -->
-            <div class="sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <div class="clearfix text-center">
-                        <a href="#" class="navbar-brand">
-                            surveyor
-                        </a>
-                    </div>
-
-                    <div class="sidebar-search">
-                        <input type="text" name="search" placeholder="Search...">
-                    </div>
-
-                    <ul id="side-menu" class="nav">
-                        <li>
-                            <%= link_to dashboard_index_path do %>
-                                <%= material_icon.dashboard %> Dashboard
-                            <% end %>
-                        </li>
-                        <li>
-                            <%= link_to survey_index_path do %>
-                                <%= material_icon.assignment %> Surveys
-                            <% end %>
-                        </li>
-                        <li><a href="#"><%= material_icon.people %> Clients</a></li>
-                        <li><a href="#"><%= material_icon.settings %> Manage</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- header -->
-            <div id="header">
-                <div class="profile">
-                    <a href="#">
-                        <%= material_icon.account_circle.md_36 %>
-                    </a>
-                </div>
-                <%= yield :header_title %>
-            </div>
-
-            <!-- content -->
-            <div id="content">
+        <% if ! @user %>
+            <div class="container">
                 <%= yield %>
             </div>
-        </div>
+        <% else %>
+            <div id="wrapper">
+                <!-- main nav -->
+                <div class="sidebar" role="navigation">
+                    <div class="sidebar-nav navbar-collapse">
+                        <div class="clearfix text-center">
+                            <a href="#" class="navbar-brand">
+                                surveyor
+                            </a>
+                        </div>
+
+                        <div class="sidebar-search">
+                            <input type="text" name="search" placeholder="Search...">
+                        </div>
+
+                        <ul id="side-menu" class="nav">
+                            <li>
+                                <%= link_to dashboard_index_path do %>
+                                    <%= material_icon.dashboard %> Dashboard
+                                <% end %>
+                            </li>
+                            <li>
+                                <%= link_to survey_index_path do %>
+                                    <%= material_icon.assignment %> Surveys
+                                <% end %>
+                            </li>
+                            <li><a href="#"><%= material_icon.people %> Clients</a></li>
+                            <li>
+                                <%= link_to manage_default_index_path do %>
+                                    <%= material_icon.settings %> Manage
+                                <% end %>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- header -->
+                <div id="header">
+                    <div class="profile dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <%= material_icon.account_circle.md_36 %>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li>
+                                <%= link_to "Logout", logout_path %>
+                            </li>
+                        </ul>
+                    </div>
+                    <%= yield :header_title %>
+                </div>
+
+                <% flash.each do |key, value| %>
+                    <div class="alert alert-<%= key %>">
+                        <button type="button" class="close" data-dismiss="alert" style="font-size: 1.8em;">&times;</button>
+                        <%= value %>
+                    </div>
+                <% end %>
+
+                <!-- content -->
+                <div id="content">
+                    <%= yield %>
+                </div>
+            </div>
+        <% end %>
     </body>
 </html>
