@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+  get 'client/index'
+
     resources :dashboard,
         :survey,
-        :sessions
+        :sessions,
+        :client
 
     namespace :manage do
         resources :person,

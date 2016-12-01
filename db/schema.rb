@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161130202553) do
+ActiveRecord::Schema.define(version: 20161201181214) do
+
+  create_table "clients", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "title"
+    t.string   "company"
+    t.integer  "person_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["person_id"], name: "index_clients_on_person_id", using: :btree
+  end
 
   create_table "people", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "first_name"
@@ -20,11 +33,6 @@ ActiveRecord::Schema.define(version: 20161130202553) do
     t.datetime "updated_at",      null: false
     t.string   "password_digest"
     t.boolean  "active"
-  end
-
-  create_table "people_permissions", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "person_id",     null: false
-    t.integer "permission_id", null: false
   end
 
   create_table "permissions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -48,8 +56,11 @@ ActiveRecord::Schema.define(version: 20161130202553) do
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.boolean  "active"
+    t.integer  "person_id"
+    t.index ["person_id"], name: "index_surveys_on_person_id", using: :btree
   end
 
+  add_foreign_key "clients", "people"
   add_foreign_key "person_permissions", "people"
   add_foreign_key "person_permissions", "permissions"
 end
