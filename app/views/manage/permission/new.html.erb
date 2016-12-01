@@ -1,0 +1,37 @@
+<%= render "manage/layout" %>
+
+<ol class="breadcrumb">
+    <li>
+        <%= link_to "Manage", manage_default_index_path %>
+    </li>
+    <li class="active">
+        Add Permission
+    </li>
+</ol>
+
+<h4 class="text-md-blue">Permission Details</h4>
+<%= bootstrap_form_for @permission, url: {action: 'create'} do |f| %>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <% if @permission.errors.any? %>
+                <div id="error_explanation">
+                    <h4 class="text-danger">
+                        <%= pluralize(@permission.errors.count, "error") %> prohibited this permission from being saved:
+                    </h4>
+                    <ul>
+                        <% @permission.errors.full_messages.each do |msg| %>
+                            <li class="text-danger"><%= msg %></li>
+                        <% end %>
+                    </ul>
+                </div>
+            <% end %>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <%= f.text_field :role, class: "form-control" %>
+                </div>
+            </div>
+            <%= f.submit class: "btn btn-orange" %>
+        </div>
+    </div>
+<% end %>

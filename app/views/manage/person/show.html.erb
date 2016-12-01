@@ -1,0 +1,123 @@
+<%= render "manage/layout" %>
+
+<div id="content-right">
+    <h5 class="text-light-grey">Latest Activity</h5>
+    <ul>
+        <li>
+            <div class="date">
+                11/22 @ 10:56am
+            </div>
+            <div class="subject">
+                Response to survey
+            </div>
+            <div class="details">
+                <a href="#">Jack Morgan</a> responded.
+            </div>
+        </li>
+        <li>
+            <div class="date">
+                11/22 @ 08:22am
+            </div>
+            <div class="subject">
+                Response to survey
+            </div>
+            <div class="details">
+                <a href="#">Corey Phillips</a> responded.
+            </div>
+        </li>
+        <li>
+            <div class="date">
+                11/22 @ 07:56am
+            </div>
+            <div class="subject">
+                Response to survey
+            </div>
+            <div class="details">
+                <a href="#">Linda Jones</a> responded.
+            </div>
+        </li>
+        <li>
+            <div class="date">
+                11/21 @ 09:05pm
+            </div>
+            <div class="subject">
+                Created survey
+            </div>
+            <div class="details">
+                You created the <a href="#">CFA Catering</a> survey.
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div id="content-left">
+    <ol class="breadcrumb">
+        <div class="links">
+            <% if @user.has_role?('MANAGE_WRITE') %>
+                <%= link_to edit_manage_person_path(@person), class: 'btn-round btn-round-md btn-round-primary' do %>
+                    <%= material_icon.edit %>
+                <% end %>
+            <% end %>
+        </div>
+        <li>
+            <%= link_to "Manage", manage_default_index_path %>
+        </li>
+        <li class="active">
+            <%= @person %>
+        </li>
+    </ol>
+
+    <div class="pull-right bubble bubble-sm bubble-<%= @person.active ? 'active' : 'archived' %>">
+        <%= @person.active ? 'Active' : 'Inactive' %>
+    </div>
+    <h3 class="text-md-blue"><%= @person %></h3>
+    <h6 class="text-light-grey" style="margin-top: -10px;"><%= material_icon.email.style('position: relative; top: 3px; font-size: 1.2em;') %> <%= @person.email %></h6>
+
+    <ul class="nav nav-tabs nav-justified">
+        <li class="active"><a href="#overview" data-toggle="tab">Overview</a></li>
+        <li><a href="#surveys" data-toggle="tab">Surveys</a></li>
+        <li><a href="#clients" data-toggle="tab">Clients</a></li>
+        <li><a href="#permissions" data-toggle="tab">Permissions</a></li>
+    </ul>
+
+    <div class="tab-content" style="margin-top: 30px;">
+        <div class="tab-pane fade in active" id="overview">
+            <h4 class="text-md-blue">Overivew</h4>
+        </div>
+        <div class="tab-pane fade" id="surveys">
+            <h4 class="text-md-blue">Surveys</h4>
+        </div>
+        <div class="tab-pane fade" id="clients">
+            <h4 class="text-md-blue">Clients</h4>
+        </div>
+        <div class="tab-pane fade" id="permissions">
+            <h4 class="text-md-blue">Permissions</h4>
+            <table class="table table-hover">
+                <thead>
+                    <th>Role</th>
+                    <th width="1%;"></th>
+                </thead>
+                <% @permissions.each do |permission| %>
+                    <tr>
+                        <td><%= permission.role %></td>
+                        <td>
+                            <% if @person.permissions.include?(permission) %>
+                                <% if @user.has_role?('MANAGE_WRITE') %>
+                                    <%= check_box_tag false, permission.id, true, {:class => 'js-permission', :'data-url' => manage_person_remove_permission_path(:id => @person.id, :permission_id => permission.id)} %>
+                                <% else %>
+                                    <%= material_icon.check_box %>
+                                <% end %>
+                            <% else %>
+                                <% if @user.has_role?('MANAGE_WRITE') %>
+                                    <%= check_box_tag false, permission.id, false, {:class => 'js-permission', :'data-url' => manage_person_add_permission_path(:id => @person.id, :permission_id => permission.id)} %>
+                                <% else %>
+                                    <%= material_icon.check_box_outline_blank %>
+                                <% end %>
+                            <% end %>
+                        </td>
+                    </tr>
+                <% end %>
+            </table>
+        </div>
+    </div>
+</div>

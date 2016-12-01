@@ -1,0 +1,73 @@
+<%= render "manage/layout" %>
+
+<ol class="breadcrumb">
+    <li>
+        <%= link_to "Manage", manage_default_index_path %>
+    </li>
+    <li class="active">
+        People &amp; Permissions
+    </li>
+</ol>
+
+<div class="row">
+    <div class="col-md-8">
+        <h4 class="text-md-blue">
+            People
+            <% if @user.has_role?('MANAGE_WRITE') %>
+                <%= link_to new_manage_person_path, class: 'btn-round btn-round-md btn-round-primary pull-right' do %>
+                    <%= material_icon.add %>
+                <% end %>
+            <% end %>
+        </h4>
+        <table class="table table-striped table-hover">
+            <thead>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th style="width: 1%;"></th>
+            </thead>
+            <% @people.each do |person| %>
+                <tr>
+                    <td><%= person.first_name %></td>
+                    <td><%= person.last_name %></td>
+                    <td><%= person.email %></td>
+                    <td><%= person.active ? 'Active' : 'Inactive' %></td>
+                    <td>
+                        <%= link_to manage_person_path(person), class: 'btn-round btn-round-sm btn-round-primary' do %>
+                            <%= material_icon.description.style('font-size: 16px;') %>
+                        <% end %>
+                    </td>
+                </tr>
+            <% end %>
+        </table>
+    </div>
+    <div class="col-md-4">
+        <h4 class="text-md-blue">
+            Permissions
+            <% if @user.has_role?('MANAGE_WRITE') %>
+                <%= link_to new_manage_permission_path, class: 'btn-round btn-round-md btn-round-primary pull-right' do %>
+                    <%= material_icon.add %>
+                <% end %>
+            <% end %>
+        </h4>
+        <table class="table table-striped table-hover">
+            <thead>
+                <th>Role</th>
+                <th style="width: 1%;"></th>
+            </thead>
+            <% @permissions.each do |permission| %>
+                <tr>
+                    <td><%= permission.role %></td>
+                    <td>
+                        <% if @user.has_role?('MANAGE_WRITE') %>
+                            <%= link_to manage_permission_path(permission), method: :delete, class: 'btn-round btn-round-sm btn-round-danger-simple' do %>
+                                <%= material_icon.clear.style('font-size: 16px;') %>
+                            <% end %>
+                        <% end %>
+                    </td>
+                </tr>
+            <% end %>
+        </table>
+    </div>
+</div>
