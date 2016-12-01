@@ -93,6 +93,24 @@
         </div>
         <div class="tab-pane fade" id="permissions">
             <h4 class="text-md-blue">Permissions</h4>
+            <table class="table table-hover">
+                <thead>
+                    <th>Role</th>
+                    <th width="1%;"></th>
+                </thead>
+                <% @permissions.each do |permission| %>
+                    <tr>
+                        <td><%= permission.role %></td>
+                        <td>
+                            <% if @person.permissions.include?(permission) %>
+                                <%= check_box_tag false, permission.id, true, {:class => 'js-permission', :'data-url' => manage_person_remove_permission_path(:id => @person.id, :permission_id => permission.id)} %>
+                            <% else %>
+                                <%= check_box_tag false, permission.id, false, {:class => 'js-permission', :'data-url' => manage_person_add_permission_path(:id => @person.id, :permission_id => permission.id)} %>
+                            <% end %>
+                        </td>
+                    </tr>
+                <% end %>
+            </table>
         </div>
     </div>
 </div>
