@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161201181214) do
+ActiveRecord::Schema.define(version: 20161201202756) do
 
   create_table "clients", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "first_name"
@@ -50,6 +50,17 @@ ActiveRecord::Schema.define(version: 20161201181214) do
     t.index ["person_id"], name: "index_person_permissions_on_person_id", using: :btree
   end
 
+  create_table "questions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "title"
+    t.string   "question_type"
+    t.integer  "survey_id"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.text     "possible_answers", limit: 65535
+    t.integer  "order"
+    t.index ["survey_id"], name: "index_questions_on_survey_id", using: :btree
+  end
+
   create_table "surveys", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
     t.text     "description", limit: 65535
@@ -63,4 +74,5 @@ ActiveRecord::Schema.define(version: 20161201181214) do
   add_foreign_key "clients", "people"
   add_foreign_key "person_permissions", "people"
   add_foreign_key "person_permissions", "permissions"
+  add_foreign_key "questions", "surveys"
 end
