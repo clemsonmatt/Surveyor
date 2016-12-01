@@ -1,0 +1,2 @@
+module Survey::QuestionHelper
+end

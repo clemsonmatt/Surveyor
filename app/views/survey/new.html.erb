@@ -11,6 +11,19 @@
 <%= bootstrap_form_for @survey, url: {action: 'create'} do |f| %>
     <div class="panel panel-default">
         <div class="panel-body">
+            <% if @survey.errors.any? %>
+                <div id="error_explanation">
+                    <h4 class="text-danger">
+                        <%= pluralize(@survey.errors.count, "error") %> prohibited this survey from being saved:
+                    </h4>
+                    <ul>
+                        <% @survey.errors.full_messages.each do |msg| %>
+                            <li class="text-danger"><%= msg %></li>
+                        <% end %>
+                    </ul>
+                </div>
+            <% end %>
+
             <%= f.text_field :title, class: "form-control" %>
             <%= f.text_area :description, class: "form-control", rows: 4 %>
             <%= f.submit class: "btn btn-orange" %>
