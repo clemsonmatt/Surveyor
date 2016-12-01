@@ -2,7 +2,7 @@ class SurveyController < ApplicationController
     before_action :logged_in?
 
     def index
-        @surveys = Survey.all.order(created_at: :desc)
+        @surveys = Survey.all.where(person: @user).order(created_at: :desc)
     end
 
     def show
@@ -13,13 +13,10 @@ class SurveyController < ApplicationController
         @survey = Survey.new
     end
 
-    def edit
-        @survey = Survey.find(params[:id])
-    end
-
     def create
         @survey        = Survey.new(survey_params)
         @survey.active = true
+        @survey.person = @user
 
         if @survey.save
             flash[:success] = 'Survey added'
@@ -27,6 +24,10 @@ class SurveyController < ApplicationController
         else
             render 'new'
         end
+    end
+
+    def edit
+        @survey = Survey.find(params[:id])
     end
 
     def update

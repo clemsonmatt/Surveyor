@@ -2,6 +2,8 @@ class Person < ApplicationRecord
     has_many :person_permissions, :dependent => :destroy
     has_many :permissions, :through => :person_permissions
 
+    has_many :surveys, :dependent => :destroy
+
     def to_s
         "#{self.first_name} #{self.last_name}"
     end
