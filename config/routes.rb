@@ -23,6 +23,9 @@ Rails.application.routes.draw do
     # survey questions
     get '/survey/:id/question/new', to: 'survey/question#new', as: 'new_survey_question'
     post '/survey/:id/question', to: 'survey/question#create'
+    get '/survey/:id/question/:question_id/edit', to: 'survey/question#edit', as: 'edit_survey_question'
+    patch '/survey/:id/question/:question_id', to: 'survey/question#update'
+    delete '/survey/:id/question/:question_id', to: 'survey/question#destroy', as: 'survey_question'
 
     # session
     get 'login', to: 'sessions#new', as: 'login'

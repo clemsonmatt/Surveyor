@@ -73,14 +73,14 @@
     </h3>
 
     <ul class="nav nav-tabs nav-justified">
-        <li class="active"><a href="#overview" data-toggle="tab">Overview</a></li>
-        <li><a href="#questions" data-toggle="tab">Questions</a></li>
+        <!-- <li><a href="#overview" data-toggle="tab">Overview</a></li> -->
+        <li class="active"><a href="#questions" data-toggle="tab">Questions</a></li>
         <li><a href="#responses" data-toggle="tab">Responses</a></li>
         <li><a href="#participants" data-toggle="tab">Participants</a></li>
     </ul>
 
     <div class="tab-content" style="margin-top: 30px;">
-        <div class="tab-pane fade in active" id="overview">
+        <div class="tab-pane fade" id="overview">
             <h4 class="text-md-blue">Description</h4>
             <%= @survey.description %>
             <br /><br />
@@ -96,7 +96,7 @@
         </div>
 
         <!-- questions -->
-        <div class="tab-pane fade" id="questions">
+        <div class="tab-pane fade in active" id="questions">
             <h4 class="text-md-blue">
                 <div class="pull-right" style="margin-top: -5px;">
                     <%= link_to new_survey_question_path, class: 'btn-round btn-round-md btn-round-primary' do %>
@@ -111,7 +111,14 @@
                         <%= i + 1 %>
                     </div>
                     <div style="margin-left: 35px;">
-                        <h6 class="text-md-blue" style="margin-bottom: 5px;"><%= question.title %></h6>
+                        <h6 class="text-md-blue" style="margin-bottom: 5px;">
+                            <div class="pull-right">
+                                <%= link_to edit_survey_question_path(:id => @survey.id, :question_id => question.id), class: 'btn-round btn-round-sm btn-round-primary-simple' do %>
+                                    <%= material_icon.edit.style('font-size: 16px;') %>
+                                <% end %>
+                            </div>
+                            <%= question.title %>
+                        </h6>
                         <p class="text-light-grey">
                             <strong>Type:</strong> <%= question.format_type %>
                             <% if question.question_type == 'select_all' || question.question_type == 'select_one' %>
