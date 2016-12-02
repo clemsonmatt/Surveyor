@@ -9,38 +9,40 @@
     </head>
 
     <body>
+        <div style="background-color: #fff; margin-bottom: 30px; padding: 10px 0; box-shadow: 2px 0 5px 0 rgba(0,0,0,0.16), 2px 0 10px 0 rgba(0,0,0,0.12);">
+            <div class="container">
+                <h3 class="text-bright-blue"><%= @survey %></h3>
+                <h6 class="text-light-grey">Survey by: <%= @survey.person %></h6>
+            </div>
+        </div>
         <div class="container">
-            <h3 class="text-md-blue"><%= @survey %></h3>
-            <h6 class="text-light-grey">Created by: <%= @survey.person %></h6>
-            <hr>
-            <div class="text-light-grey well">
+            <div class="text-light-grey" style="margin-bottom: 20px; font-size: 1.2em;">
                 <%= @survey.description %>
             </div>
 
             <% @survey.questions.each_with_index do |question, i| %>
-                <div class="text-light-grey well">
-                    <h5 class="text-md-blue"><%= question.title %></h5>
-                    <p>
-                        <% if question.question_type == 'text' %>
-                            <%= text_field :response, false, class: 'form-control' %>
-                        <% elsif question.question_type == 'yes_no' %>
-                            <%= select_tag :response, options_for_select(['Yes', 'No']), class: "form-control", prompt: '-- Yes or No --' %>
-                        <% elsif question.question_type == 'select_one' %>
-                            <% answers = question.possible_answers.split(/\s*,\s*/) %>
-                            <% answers.each do |answer| %>
-                                <%= radio_button_tag :response, answer, false %>
-                                <%= answer %>
-                                <br>
+                <div class="panel panel-default text-light-grey">
+                    <div class="panel-body">
+                        <h5 class="text-md-blue"><%= question.title %></h5>
+                        <p>
+                            <% if question.question_type == 'text' %>
+                                <%= text_field :response, false, class: 'form-control' %>
+                            <% elsif question.question_type == 'yes_no' %>
+                                <%= radio_button_tag :response, 'Yes', false %> Yes
+                                <span style="margin-left: 20px;"><%= radio_button_tag :response, 'No', false %> No</span>
+                            <% elsif question.question_type == 'select_one' %>
+                                <% answers = question.possible_answers.split(/\s*,\s*/) %>
+                                <%= select_tag :response, options_for_select(answers), class: "form-control", prompt: '-- Select One --' %>
+                            <% elsif question.question_type == 'select_all' %>
+                                <% answers = question.possible_answers.split(/\s*,\s*/) %>
+                                <% answers.each do |answer| %>
+                                    <%= check_box_tag :response, answer, false %>
+                                    <%= answer %>
+                                    <br>
+                                <% end %>
                             <% end %>
-                        <% elsif question.question_type == 'select_all' %>
-                            <% answers = question.possible_answers.split(/\s*,\s*/) %>
-                            <% answers.each do |answer| %>
-                                <%= check_box_tag :response, answer, false %>
-                                <%= answer %>
-                                <br>
-                            <% end %>
-                        <% end %>
-                    </p>
+                        </p>
+                    </div>
                 </div>
             <% end %>
         </div>
